@@ -30,6 +30,9 @@ jobs:
       - name: Run Tests
         run: |
           (set -x; ./gradlew clean check --no-daemon)
+        env:
+          GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_USER }}
+          GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY: ${{ secrets.GRADLE_ENTERPRISE_BUILD_CACHE_NODE_KEY }}
       - name: Publish Test Report
         if: failure()
         uses: scacap/action-surefire-report@v1
